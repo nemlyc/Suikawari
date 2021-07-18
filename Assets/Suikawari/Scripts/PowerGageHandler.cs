@@ -21,6 +21,8 @@ public class PowerGageHandler : MonoBehaviour
     bool ReverseFlag;
     bool isRunning = false;
 
+    float times;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,10 @@ public class PowerGageHandler : MonoBehaviour
     }
     public void StartGage()
     {
+        if (times > 0)
+        {
+            return;
+        }
         gagePrefab.SetActive(true);
         isRunning = true;
     }
@@ -65,6 +71,7 @@ public class PowerGageHandler : MonoBehaviour
     public void StopGage()
     {
         isRunning = false;
+        times += 1;
     }
 
     public void DeactivateGage()

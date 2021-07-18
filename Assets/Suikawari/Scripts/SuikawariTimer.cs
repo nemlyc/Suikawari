@@ -35,7 +35,6 @@ public class SuikawariTimer : MonoBehaviour
         seconds = Mathf.FloorToInt(timer - minutes * 60);
         mseconds = Mathf.FloorToInt((timer - minutes * 60 - seconds) * 100);
         
-        Debug.Log(GetCurrentTime());
     }
 
     /// <summary>

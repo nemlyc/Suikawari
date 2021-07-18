@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class StickAction : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    Rigidbody rb;
+
+    private void Awake()
     {
-        
-        if (collision.gameObject.TryGetComponent<IInteractable>(out var watermelon))
-        {
-            watermelon.Interact();
-        }
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,6 +16,7 @@ public class StickAction : MonoBehaviour
         if (other.gameObject.TryGetComponent<IInteractable>(out var watermelon))
         {
             watermelon.Interact();
+            rb.isKinematic = true;
         }
     }
 }
