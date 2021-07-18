@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 move;
 
+    public bool IsPlaying { private get; set; }
+
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -18,6 +20,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Update()
+    {
+        if (IsPlaying)
+        {
+            Movement();
+        }
+    }
+
+    public void Movement()
     {
         transform.rotation = Camera.main.transform.rotation;
         transform.Translate(move * playerData.MoveSpeed * Time.deltaTime);

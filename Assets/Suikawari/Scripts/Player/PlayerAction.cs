@@ -12,15 +12,20 @@ public class PlayerAction : MonoBehaviour
     [SerializeField]
     PowerGageHandler gage;
 
+    public bool IsPlaying { private get; set; }
+
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (IsPlaying)
         {
-            gage.StartGage();
-        } else if (context.canceled)
-        {
-            gage.StopGage();
-            stick.SetBool(swingParam, true);
+            if (context.started)
+            {
+                gage.StartGage();
+            } else if (context.canceled)
+            {
+                gage.StopGage();
+                stick.SetBool(swingParam, true);
+            }
         }
     }
 }
