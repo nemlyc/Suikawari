@@ -30,6 +30,6 @@ public class PlayerMovement : MonoBehaviour
     public void Movement()
     {
         transform.rotation = Camera.main.transform.rotation;
-        transform.Translate(move * playerData.MoveSpeed * Time.deltaTime);
+        transform.Translate(playerData.MoveSpeed * Time.deltaTime * move);
     }
 }
