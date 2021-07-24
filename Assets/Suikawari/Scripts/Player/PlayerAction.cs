@@ -25,7 +25,17 @@ public class PlayerAction : MonoBehaviour
             {
                 gage.StopGage();
                 stick.SetBool(swingParam, true);
+
+                StartCoroutine(Setup());
             }
         }
     }
+
+    IEnumerator Setup()
+    {
+        yield return new WaitForSeconds(3f);
+
+        stick.SetBool(swingParam, false);
+    }
+
 }
