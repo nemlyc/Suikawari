@@ -24,7 +24,13 @@ public class UISwitcher : MonoBehaviour
 
     public void ShowResult()
     {
-        scoreText.text = $"<color=#B0443A>{calc.CalcScoreData()}</color> 点！（めざせ100万点）";
+        var score = calc.CalcScoreData();
+        if (score < 0)
+        {
+            score = 0;
+        }
+
+        scoreText.text = $"<color=#B0443A>{score}</color> 点！（めざせ100万点）";
         black.SetActive(false);
         resultPanel.SetActive(true);
 

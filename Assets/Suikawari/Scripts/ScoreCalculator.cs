@@ -17,7 +17,7 @@ public class ScoreCalculator : MonoBehaviour
 
     float gotPositionScore = 0;
 
-    float resultScore;
+    int resultScore;
 
     public void SetSeparetedPosition(float score)
     {
@@ -34,13 +34,13 @@ public class ScoreCalculator : MonoBehaviour
         CalcScoreData();
     }
 
-    public float CalcScoreData()
+    public int CalcScoreData()
     {
         if (gotPositionScore > 0)
         {
             var gageScore = FixedGageScore();
             var timeScore = FixedTimeScore();
-            resultScore = gageScore * gotPositionScore * timeScore;
+            resultScore = Mathf.CeilToInt(gageScore * gotPositionScore * timeScore);
             Debug.Log($"{gageScore} x {gotPositionScore} x {timeScore} = {resultScore}");
             return resultScore;
         }
