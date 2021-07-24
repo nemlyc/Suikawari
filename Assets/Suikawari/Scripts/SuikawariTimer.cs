@@ -47,7 +47,6 @@ public class SuikawariTimer : MonoBehaviour
             return;
         }
         isStop = false;
-        timer = 0;
         Debug.Log("Timer started.");
     }
 
@@ -85,6 +84,18 @@ public class SuikawariTimer : MonoBehaviour
     public string GetMinutes()
     {
         return SetFormat(minutes);
+    }
+
+    public bool IsEnd()
+    {
+        if (timer < 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     string SetFormat(float time)
