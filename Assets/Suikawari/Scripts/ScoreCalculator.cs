@@ -13,7 +13,7 @@ public class ScoreCalculator : MonoBehaviour
 
     readonly float GageMagnification = 100;
 
-    readonly float TimeMagnification = 10/3; // 100/30
+    readonly float TimeMagnification = 2; // 最速10秒で見つけられる想定
 
     float gotPositionScore = 0;
 
@@ -58,10 +58,6 @@ public class ScoreCalculator : MonoBehaviour
         var rawTime = timer.GetSeconds();
         var time = int.Parse(rawTime);
         Debug.Log($"time : {time}, fixedTime : {time * TimeMagnification}");
-#if UNITY_EDITOR
-        return 100;
-#else
         return time * TimeMagnification;
-#endif
     }
 }
