@@ -11,6 +11,9 @@ public class PowerGageHandler : MonoBehaviour
     [SerializeField]
     GameObject gagePrefab;
 
+    [SerializeField]
+    SuikawariStateManager stateManager;
+
     readonly Color low = new Color(0.3f, 0.4f, 0.9f);
     readonly Color mid = new Color(0.3f, 0.9f, 0.4f);
     readonly Color high = new Color(0.9f, 0.4f, 0.3f);
@@ -20,8 +23,6 @@ public class PowerGageHandler : MonoBehaviour
 
     bool ReverseFlag;
     bool isRunning = false;
-
-    float times;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +61,7 @@ public class PowerGageHandler : MonoBehaviour
     }
     public void StartGage()
     {
-        if (times > 0)
+        if (stateManager.CurrentState.Equals(SuikawariStateManager.State.Result))
         {
             return;
         }
@@ -71,7 +72,8 @@ public class PowerGageHandler : MonoBehaviour
     public void StopGage()
     {
         isRunning = false;
-        times += 1;
+
+        DeactivateGage();
     }
 
     public void DeactivateGage()
