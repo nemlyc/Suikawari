@@ -10,6 +10,10 @@ public class SuikawariStateManager : MonoBehaviour
     PlayerMovement movement;
     [SerializeField]
     PlayerAction action;
+    [SerializeField]
+    SuikawariTimer timer;
+    [SerializeField]
+    UISwitcher switcher;
 
 
     public enum State{
@@ -22,27 +26,21 @@ public class SuikawariStateManager : MonoBehaviour
 
     private void Awake()
     {
-        SetState(State.Playing);//Debug
-        ToPlaying();
+        //ToPlaying();
     }
 
     private void Update()
     {
-        /*
-         * ステートの切り替えとか。
-         */
         if (waterMelon.IsBroken)
         {
-            CurrentState = State.Result;
+            SetState(State.Result);
             ToResult();
         }
 
-        /*
-         * ステートの状態に応じた操作系の切り替え。
-         * ここから参照することで、他でハード参照を控える。
-         */
-
-
+        if (timer.IsEnd())
+        {
+            ToResult();
+        }
 
     }
 
@@ -63,17 +61,24 @@ public class SuikawariStateManager : MonoBehaviour
         CurrentState = state;
     }
 
-    private void ToPlaying()
+    public void ToPlaying()
     {
         movement.IsPlaying = true;
         action.IsPlaying = true;
-        
+
+        SetState(State.Playing);
     }
 
-    private void ToResult()
+    public void ToResult()
     {
         movement.IsPlaying = false;
         action.IsPlaying = false;
+
+        SetState(State.Result);
+
+        switcher.ShowResult();
+
         //カメラの切り替え
+
     }
 }
