@@ -14,6 +14,6 @@ public class Initializer : MonoBehaviour
 
     private void Start()
     {
-        timer.StartTimer();
+        //timer.StartTimer();
     }
 }

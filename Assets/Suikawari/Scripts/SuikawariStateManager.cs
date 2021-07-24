@@ -67,6 +67,8 @@ public class SuikawariStateManager : MonoBehaviour
         action.IsPlaying = true;
 
         SetState(State.Playing);
+
+        timer.StartTimer();
     }
 
     public void ToResult()
